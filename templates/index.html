@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Home - Finance Tracker{% endblock %}
+{% block content %}
+<div class="text-center mt-5">
+  <h1 class="display-4 fw-bold text-primary mb-4">Welcome to FinLytics</h1>
+  <p class="lead mb-5">Track your income, expenses, and savings with ease. Get smart financial insights and stay in control of your money.</p>
+  <div class="d-flex justify-content-center gap-3">
+    <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg px-4">Login</a>
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4">Register</a>
+  </div>
+</div>
+{% endblock %}

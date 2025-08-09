@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - Finance Tracker{% endblock %}
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4 text-primary"><i class="fas fa-chart-line"></i> Finance Dashboard</h2>
+
+  <p><strong>💼 Salary:</strong> ₹{{ salary }} | <strong>💸 Budget:</strong> ₹{{ budget }}</p>
+  <a href="{{ url_for('settings') }}" class="btn btn-outline-secondary btn-sm mb-3">
+    <i class="fas fa-cog"></i> Update Salary & Budget
+  </a>
+
+  {% if alert_message %}
+  <div class="alert alert-warning d-flex align-items-center" role="alert">
+    <i class="fas fa-exclamation-circle me-2"></i> {{ alert_message }}
+  </div>
+  {% endif %}
+
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card border-start border-primary border-4 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-wallet"></i> Remaining Budget</h5>
+          <p class="card-text fs-4 {% if remaining_budget < 0 %}text-danger{% else %}text-success{% endif %}">
+            ₹{{ remaining_budget }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title text-secondary mb-3"><i class="fas fa-plus-circle"></i> Add New Expense</h4>
+      <form method="POST" action="/add_expense" class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Category</label>
+          <select name="category" class="form-select" required>
+            <option value="">Select Category</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="housing">Housing</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="utilities">Utilities</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Item</label>
+          <input type="text" name="item" class="form-control" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Amount</label>
+          <input type="number" name="amount" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Date</label>
+          <input type="date" name="date" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Description</label>
+          <textarea name="description" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100"><i class="fas fa-save"></i> Add Expense</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% if recommendations %}
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-info"><i class="fas fa-lightbulb"></i> AI-Based Financial Recommendations</h5>
+      <ul class="list-group list-group-flush">
+        {% for rec in recommendations %}
+        <li class="list-group-item">{{ rec }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="card mb-5 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-dark"><i class="fas fa-list"></i> Expense History</h5>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-primary">
+            <tr>
+              <th>Category</th>
+              <th>Item</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for expense in expenses %}
+            <tr>
+              <td>{{ expense[2] }}</td>
+              <td>{{ expense[3] }}</td>
+              <td>₹{{ expense[4] }}</td>
+              <td>{{ expense[5] }}</td>
+              <td>{{ expense[6] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <a href="/visualize" class="btn btn-outline-info"><i class="fas fa-chart-pie"></i> View Expense Chart</a>
+    <a href="/logout" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+</div>
+{% endblock %}

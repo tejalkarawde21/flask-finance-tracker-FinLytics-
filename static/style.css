@@ -1,0 +1,192 @@
+/* ===== Variables for Theming ===== */
+:root {
+  --primary: #4361ee;
+  --secondary: #3f37c9;
+  --success: #4cc9f0;
+  --danger: #f72585;
+  --info: #00bbf9;
+  --warning: #ffc300;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --text-color: #333;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --radius: 10px;
+}
+
+/* ===== Base Reset and Fonts ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: var(--text-color);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* ===== Headings ===== */
+h1, h2, h3, h4 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+h2 {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--primary);
+  margin-top: 8px;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.btn-primary {
+  background: var(--primary);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--secondary);
+}
+
+.btn-outline-info {
+  border-color: var(--info);
+  color: var(--info);
+}
+
+.btn-outline-info:hover {
+  background: var(--info);
+  color: white;
+}
+
+.btn-outline-danger {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-outline-danger:hover {
+  background: var(--danger);
+  color: white;
+}
+
+/* ===== Forms ===== */
+input, select, textarea {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  transition: border 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+  outline: none;
+}
+
+/* ===== Cards ===== */
+.card {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: none;
+}
+
+/* ===== Alerts ===== */
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 5px solid var(--warning);
+  font-weight: 500;
+}
+
+/* ===== Table Styling ===== */
+.table th {
+  background-color: var(--primary);
+  color: white;
+  text-transform: uppercase;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* ===== Dashboard Specific ===== */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.budget-card p {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.text-success {
+  color: var(--success) !important;
+}
+
+.text-danger {
+  color: var(--danger) !important;
+}
+
+/* ===== Recommendation List ===== */
+.list-group-item::before {
+  content: '💡';
+  margin-right: 0.5rem;
+}
+
+/* ===== Visualization Chart ===== */
+img.expense-chart {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  h2::after {
+    margin-left: 0;
+  }
+}
